@@ -1,5 +1,6 @@
 import './App.css';
 import {useEffect,useState} from 'react';
+import Wordle from './components/Wordle';
 function App() {
   const [solution, setSolution] = useState(null)
   
@@ -15,7 +16,8 @@ function App() {
   return (
     <div className="App">
       <h1>WordIT</h1>
-      {solution && <div>Solution is :{solution}</div>}
+      {/* {solution && <div>Solution is :{solution}</div>} */}
+      {solution && <Wordle solution={solution}/>}
       {/* This is done to ensure that only when solution is present then the output is printed */}
 
     </div>

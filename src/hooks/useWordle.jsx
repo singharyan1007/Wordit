@@ -24,11 +24,24 @@ const useWordle=(solution)=> {
     //add one to the number of turns left
   }
 
-  const handleKeyUp=()=>{
+  const handleKeyup = ({ key }) => {
+    console.log('key pressed - ', key)
+
+    if (key === 'Backspace') {
+      setCurrentGuess(prev => prev.slice(0, -1))
+      return
+    }
+    if (/^[A-Za-z]$/.test(key)) {
+      if (currentGuess.length < 5) {
+        setCurrentGuess(prev => prev + key)
+      }
+    }
+  
     //handle the keyboard basically and keep track of the current guess
     //when the user presses enter then add the input to the guess list
   }
-  return {turn,currentGuess,guesses,isCorrect,handleKeyUp}
+  // In the hook we will create an event listener which will fire a handleKeyUp() when key is pressed
+  return {turn,currentGuess,guesses,isCorrect,handleKeyup}
   //these values handled outside the hook
 
 }
