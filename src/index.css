@@ -7,12 +7,25 @@ body {
   background: #020202;
   color: rgb(105, 105, 105);
 }
-h1 {
-  font-size: 2em;
-  padding: 20px 0;
-  border-bottom: 1px solid #eee;
+.navbar{
+  display: flex;
+  justify-content: space-around;
+  /* padding: 20px 0; */
   margin: 0 0 30px 0;
   color: rgb(105, 102, 102);
+  border-bottom: 1px solid #eee;
+  align-items: center;
+
+}
+h1 {
+  font-size: 2.2em;
+  color: white;
+}
+.font{
+  color: white;
+  font-size: 1.5em;
+  padding: 8px;
+  cursor: pointer;
 }
 /* rows */
 .row {
@@ -131,7 +144,16 @@ h1 {
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-
+.modal-btn{
+  background-color: transparent;
+  color: white;
+  font-size: 1.5rem;
+  border: none;
+  cursor: pointer;
+}
+.close-modal{
+  float: right;
+}
 /* keyframe animations */
 @keyframes flip {
   0% {
@@ -167,5 +189,12 @@ h1 {
   100% {
     transform: scale(1);
     border-color: #333;
+  }
+}
+
+@media (max-width:390px){
+  .modal div{
+    width: 300px;
+    padding: 30px;
   }
 }
