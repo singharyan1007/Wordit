@@ -12,6 +12,8 @@ const useWordle=(solution)=> {
   const[isCorrect,setIsCorect]=useState(false);
   //keeps track of the correctness of the guess
   //on;y turns true when user wins the game
+  const[usedKeys,setUsedKeys]=useState({});
+  //we add the submitted word in this and then it assess the word and assigns a color on the basis of the solution just like in the grid 
 
   const formatGuess=()=>{
 
@@ -61,6 +63,25 @@ const useWordle=(solution)=> {
       return prevTurn+1;
     })
     // Now since we have a guess we need to clear the state of the current guess
+    setUsedKeys((prevUsedKeys)=>{
+      let newKeys={...prevUsedKeys};
+      formattedGuess.forEach((l)=>{
+        const currentColor=newKeys[l.key];
+        if (l.color === 'green') {
+          prevUsedKeys[l.key] = 'green'
+          return
+        }
+        if (l.color === 'yellow' && currentColor !== 'green') {
+          prevUsedKeys[l.key] = 'yellow'
+          return
+        }
+        if (l.color === 'grey' && currentColor !== ('green' || 'yellow')) {
+          prevUsedKeys[l.key] = 'grey'
+          return
+        }
+      });
+      return prevUsedKeys;
+    })
     setCurrentGuess('');
   }
 
@@ -105,7 +126,7 @@ const useWordle=(solution)=> {
     //when the user presses enter then add the input to the guess list
   }
   // In the hook we will create an event listener which will fire a handleKeyUp() when key is pressed
-  return {turn,currentGuess,guesses,isCorrect,handleKeyup}
+  return {turn,currentGuess,guesses,isCorrect,usedKeys,handleKeyup}
   //these values handled outside the hook
 
 }
